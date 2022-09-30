@@ -1,9 +1,12 @@
 package com.apiit.assignment;
 
+import org.json.JSONObject;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.net.Socket;
 
 
 public class readWordCount implements ActionListener{
@@ -53,7 +56,15 @@ public class readWordCount implements ActionListener{
             StringBuilder book = new StringBuilder();
             fileReader.lines().forEach(line -> book.append(line).append('\n'));
             long startTime = System.currentTimeMillis();
-            String res = String.valueOf(algorithms.wordCount(book));
+
+            //String res = String.valueOf(algorithms.wordCount(book));
+
+            JSONObject obj = new JSONObject();
+            obj.put("fn", 4);
+            obj.put("value", book);
+            clienthandler cln = new clienthandler();
+            String res = String.valueOf(cln.Client(obj));
+
             long endTime = System.currentTimeMillis();
             wordResult.setText("Word count is: " + res);
             wordTime.setText("Duration: " + String.valueOf(endTime - startTime) + " Milliseconds");

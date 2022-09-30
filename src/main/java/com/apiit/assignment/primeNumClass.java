@@ -1,8 +1,9 @@
 package com.apiit.assignment;
-
+import org.json.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class primeNumClass implements ActionListener {
 
@@ -44,10 +45,22 @@ public class primeNumClass implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         NonConcurrentAlgorithms algorithms = new NonConcurrentAlgorithms();
+
         try {
+
+
             int num = Integer.parseInt(primeField.getText());
             long startTime = System.currentTimeMillis();
-            String res = String.valueOf(algorithms.nthPrime(num));
+
+
+            // String res = String.valueOf(algorithms.nthPrime(num));
+
+            JSONObject obj = new JSONObject();
+            obj.put("fn", 3);
+            obj.put("value", num);
+            clienthandler cln = new clienthandler();
+            String res = String.valueOf(cln.Client(obj));
+
             long endTime = System.currentTimeMillis();
             result.setText("Nth Prime is " + res);
             time.setText("Duration: " + String.valueOf(endTime-startTime) + " Milliseconds" );
