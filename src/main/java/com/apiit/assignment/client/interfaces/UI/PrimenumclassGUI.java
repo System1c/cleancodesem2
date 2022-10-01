@@ -1,14 +1,15 @@
-package com.apiit.assignment;
-import org.json.*;
+package com.apiit.assignment.client.interfaces.UI;
+
+import com.apiit.assignment.client.interfaces.controllers.PrimenumGUIcontroller;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 
-public class primeNumClass implements ActionListener {
+public class PrimenumclassGUI implements ActionListener{
 
-    private static JTextField primeField;
-    private static JLabel result;
+    static JTextField primeField;
+    static JLabel result;
     private static JLabel time;
     public static void main() {
         JPanel primePanel = new JPanel();
@@ -28,7 +29,7 @@ public class primeNumClass implements ActionListener {
 
         JButton primeNumCalc = new JButton("Calculate nth Prime");
         primeNumCalc.setBounds(95, 100, 160, 25);
-        primeNumCalc.addActionListener(new primeNumClass());
+        primeNumCalc.addActionListener(new PrimenumclassGUI());
         primePanel.add(primeNumCalc);
 
         result = new JLabel("");
@@ -44,30 +45,12 @@ public class primeNumClass implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        NonConcurrentAlgorithms algorithms = new NonConcurrentAlgorithms();
+        PrimenumGUIcontroller pnfc = new PrimenumGUIcontroller();
 
-        try {
-
-
-            int num = Integer.parseInt(primeField.getText());
-            long startTime = System.currentTimeMillis();
-
-
-            // String res = String.valueOf(algorithms.nthPrime(num));
-
-            JSONObject obj = new JSONObject();
-            obj.put("fn", 3);
-            obj.put("value", num);
-            clienthandler cln = new clienthandler();
-            String res = String.valueOf(cln.Client(obj));
-
-            long endTime = System.currentTimeMillis();
-            result.setText("Nth Prime is " + res);
-            time.setText("Duration: " + String.valueOf(endTime-startTime) + " Milliseconds" );
-        } catch (final NumberFormatException exc) {
-            result.setText("Not a Number!");
-            time.setText("");
-        }
-
+        pnfc.text = primeField.getText();
+        String res = pnfc.primenumintcontroller();
+        String ttime = pnfc.timecalc();
+        result.setText("Nth Prime is " + res);
+        time.setText(ttime);
     }
 }
