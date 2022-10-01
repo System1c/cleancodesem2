@@ -1,11 +1,13 @@
-package com.apiit.assignment;
+package com.apiit.assignment.client.interfaces.UI;
+import com.apiit.assignment.client.interfaces.controllers.PrimenumGUIcontroller;
+import com.apiit.assignment.client.interfaces.controllers.WordcountGUIcontroller;
 
 import javax.swing.*;
 import java.awt.event.*;
 
 
 
-public class mainInterface implements ActionListener {
+public class MainGUI implements ActionListener {
     public static void main(String[] args) {
         JPanel panel1 = new JPanel();
         JFrame frame = new JFrame();
@@ -27,7 +29,7 @@ public class mainInterface implements ActionListener {
         primeNum.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                primeNumClass.main();
+                new PrimenumGUIcontroller().run();
             }
         });
         panel1.add(primeNum);
@@ -37,7 +39,7 @@ public class mainInterface implements ActionListener {
         wordCount.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                readWordCount.main();
+                new WordcountGUIcontroller().run();
             }
         });
         panel1.add(wordCount);
