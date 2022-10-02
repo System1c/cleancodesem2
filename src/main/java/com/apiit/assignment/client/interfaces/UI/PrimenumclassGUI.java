@@ -11,36 +11,35 @@ public class PrimenumclassGUI implements ActionListener{
     static JTextField primeField;
     static JLabel result;
     private static JLabel time;
-    public static void main() {
-        JPanel primePanel = new JPanel();
-        JFrame primeFrame = new JFrame();
-        primeFrame.setSize(400,400);
-        primeFrame.setVisible(true);
-        primeFrame.add(primePanel);
-        primePanel.setLayout(null);
 
-        JLabel heading = new JLabel("Enter n:");
-        heading.setBounds(150, 25, 160, 25);
-        primePanel.add(heading);
+    static FrameGUI frameGUI = new FrameGUI();
+
+    public static void main() {
+        JPanel primepanel = frameGUI.PanelDisplay();
+        JFrame primeframe = frameGUI.FrameDisplay();
+
+        frameGUI.HeadingDisplay("Enter n:");
+
+
 
         primeField = new JTextField();
         primeField.setBounds(100, 50, 150, 25);
-        primePanel.add(primeField);
+        primepanel.add(primeField);
 
         JButton primeNumCalc = new JButton("Calculate nth Prime");
         primeNumCalc.setBounds(95, 100, 160, 25);
         primeNumCalc.addActionListener(new PrimenumclassGUI());
-        primePanel.add(primeNumCalc);
+        primepanel.add(primeNumCalc);
 
         result = new JLabel("");
         result.setBounds(125, 125, 160, 25);
-        primePanel.add(result);
+        primepanel.add(result);
 
         time = new JLabel("");
         time.setBounds(110, 150, 160, 25);
-        primePanel.add(time);
+        primepanel.add(time);
 
-        primeFrame.setVisible(true);
+        primeframe.setVisible(true);
     }
 
     @Override

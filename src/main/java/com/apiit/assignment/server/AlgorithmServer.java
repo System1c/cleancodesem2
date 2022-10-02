@@ -1,8 +1,11 @@
 package com.apiit.assignment.server;
 
-public class primenumclassserver {
+import java.time.Instant;
+
+public class AlgorithmServer {
 
     public long wordCount(StringBuilder text){
+        Instant start = Instant.now();
         long wordCount = 0;
         String[] words = text.toString().split(" ");
         for (String word : words){
@@ -11,6 +14,7 @@ public class primenumclassserver {
                 wordCount++;
             }
         }
+        Instant end = Instant.now();
         return wordCount;
     }
 
@@ -38,4 +42,6 @@ public class primenumclassserver {
         }
         return true;
     }
+
+
 }

@@ -2,36 +2,40 @@ package com.apiit.assignment.server;
 import com.apiit.assignment.classes.networkPacket;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
-public class threadmanager implements Runnable, Serializable {
-    private static Socket socket = null;
-    private static ServerSocket server = null;
-    private static int port = 4090;
-    private PrintWriter output;
+public class ClientServerHandler extends Thread implements Runnable, Serializable   {
+    private static Socket socket;
 
     public networkPacket values;
+
+
+
+    public ClientServerHandler(Socket socket){
+        try{
+            this.socket = socket;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void run() {
         try
         {
-            server = new ServerSocket(port);
             while (true){
                 System.out.println("Server Initiated");
                 System.out.println("Waiting");
 
-                socket=server.accept();
                 System.out.println("Connection Accepted");
 
 
                 ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-                output = new PrintWriter(socket.getOutputStream(), true);
+                PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
 
                 try{
                     while ((values = (networkPacket) input.readObject()) != null){
-                        primenumclassserver ncm = new primenumclassserver();
+                        AlgorithmServer ncm = new AlgorithmServer();
                         if(values.functionVal == 3){
                             int res = (int) ncm.nthPrime(values.requestVal);
                             output.write(res);
@@ -39,26 +43,38 @@ public class threadmanager implements Runnable, Serializable {
                         }
                         if(values.functionVal == 4){
                             StringBuilder sb = new StringBuilder(values.wordCount);
-                            System.out.println(sb);
                             int res = (int) ncm.wordCount(sb);
                             output.write(res);
                             output.flush();
                         }
-
                     }
 
                 }catch (EOFException e){
-                    output.close();
-                    input.close();
-                    socket.close();
+                    closeServer(socket, output, input);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
                 }
+
             }
 
         }
-
         catch (IOException e) {
             throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        }
+    }
+
+    public void closeServer(Socket socket, PrintWriter output, ObjectInputStream input){
+        try{
+            if(output != null){
+                output.close();
+            }
+            if(input != null){
+                input.close();
+            }
+            if(socket != null){
+                socket.close();
+            }
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

@@ -12,36 +12,33 @@ public class WordcountGUI implements ActionListener{
     private static JTextField wordField;
     private static JLabel wordResult;
     private static JLabel wordTime;
-    public static void main() {
-        JPanel wordPanel = new JPanel();
-        JFrame wordFrame = new JFrame();
-        wordFrame.setSize(400,400);
-        wordFrame.setVisible(true);
-        wordFrame.add(wordPanel);
-        wordPanel.setLayout(null);
 
-        JLabel wordheading = new JLabel("Enter the path of the book text:");
-        wordheading.setBounds(90, 25, 250, 25);
-        wordPanel.add(wordheading);
+    static FrameGUI frameGUI = new FrameGUI();
+
+    public static void main() {
+        JPanel countpanel = frameGUI.PanelDisplay();
+        JFrame countframe = frameGUI.FrameDisplay();
+
+        frameGUI.HeadingDisplay("Enter the path of the book text:");
 
         wordField = new JTextField();
         wordField.setBounds(100, 50, 150, 25);
-        wordPanel.add(wordField);
+        countpanel.add(wordField);
 
         JButton wordCalc = new JButton("Calculate number of words");
         wordCalc.setBounds(85, 100, 190, 25);
         wordCalc.addActionListener(new WordcountGUI());
-        wordPanel.add(wordCalc);
+        countpanel.add(wordCalc);
 
         wordResult = new JLabel("");
         wordResult.setBounds(125, 125, 160, 25);
-        wordPanel.add(wordResult);
+        countpanel.add(wordResult);
 
         wordTime = new JLabel("");
         wordTime.setBounds(110, 150, 160, 25);
-        wordPanel.add(wordTime);
+        countpanel.add(wordTime);
 
-        wordFrame.setVisible(true);
+        countframe.setVisible(true);
     }
 
     @Override

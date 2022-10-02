@@ -8,39 +8,27 @@ import java.awt.event.*;
 
 
 public class MainGUI implements ActionListener {
+        static FrameGUI frameGUI = new FrameGUI();
     public static void main(String[] args) {
-        JPanel panel1 = new JPanel();
-        JFrame frame = new JFrame();
-        frame.setSize(400,400);
-        frame.setVisible(true);
-        frame.add(panel1);
-        panel1.setLayout(null);
+        JPanel panel1 = frameGUI.PanelDisplay();
+        JFrame frame = frameGUI.FrameDisplay();
 
-        JLabel heading = new JLabel("Welcome to AlgoJam");
-        heading.setBounds(120, 25, 160, 25);
-        panel1.add(heading);
-
-        JLabel choiceHeading = new JLabel("Pick a choice below to run an algorithm");
-        choiceHeading.setBounds(75, 50, 250, 25);
-        panel1.add(choiceHeading);
+        frameGUI.HeadingDisplay("Welcome to AlgoJam");
+        frameGUI.SubheadingDisplay("Pick a choice below to run an algorithm");
 
         JButton primeNum = new JButton("nth Prime Number");
         primeNum.setBounds(10, 150, 160, 25);
-        primeNum.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new PrimenumGUIcontroller().run();
-            }
+        primeNum.addActionListener(e -> {
+            frame.dispose();
+            new PrimenumGUIcontroller().run();
         });
         panel1.add(primeNum);
 
         JButton wordCount = new JButton("Word Count");
         wordCount.setBounds(200, 150, 160, 25);
-        wordCount.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new WordcountGUIcontroller().run();
-            }
+        wordCount.addActionListener(e -> {
+            frame.dispose();
+            new WordcountGUIcontroller().run();
         });
         panel1.add(wordCount);
 

@@ -1,7 +1,7 @@
 package com.apiit.assignment.client.interfaces.controllers;
 
 
-import com.apiit.assignment.client.clienthandler;
+import com.apiit.assignment.client.ClientHandler;
 
 public class Primenumcontroller {
     private String res;
@@ -10,11 +10,9 @@ public class Primenumcontroller {
         try {
 
             int num = Integer.parseInt(primenum);
-            long startTime = System.currentTimeMillis();
-            clienthandler cln = new clienthandler();
+            ClientHandler cln = new ClientHandler();
             res = String.valueOf(cln.Client(3, num, null));
-            long endTime = System.currentTimeMillis();
-            time = ("Duration: " + String.valueOf(endTime-startTime) + " Milliseconds" );
+            // time = ("Duration: " + String.valueOf(endTime-startTime) + " Milliseconds" );
             return res;
         } catch (final NumberFormatException exc) {
             time = " ";

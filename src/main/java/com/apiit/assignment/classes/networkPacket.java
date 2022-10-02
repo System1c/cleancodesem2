@@ -8,7 +8,7 @@ public class networkPacket implements Serializable {
     public StringBuilder wordCount;
 
 
-    public networkPacket(int functionVal, int requestVal, StringBuilder wordCount) {
+    public networkPacket(int functionVal, int requestVal, StringBuilder wordCount ) {
         this.functionVal = functionVal;
         this.requestVal = requestVal;
         this.wordCount = wordCount;
