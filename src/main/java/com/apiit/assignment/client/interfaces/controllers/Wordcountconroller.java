@@ -14,9 +14,10 @@ public class Wordcountconroller {
             StringBuilder book = new StringBuilder();
             fileReader.lines().forEach(line -> book.append(line).append('\n'));
             ClientHandler cln = new ClientHandler();
-            String res = String.valueOf(cln.Client(4, 0, book));
-            bookcount = ("Word count is: " + res);
-            // booktime = "Duration: " + String.valueOf(endTime - startTime) + " Milliseconds";
+            long startTime = System.currentTimeMillis();
+            bookcount = String.valueOf(cln.Client(4, 0, book));
+            long endTime = System.currentTimeMillis();
+            booktime = "Duration: " + String.valueOf(endTime - startTime) + " Milliseconds";
             return bookcount;
         }
         catch (IOException exc) {

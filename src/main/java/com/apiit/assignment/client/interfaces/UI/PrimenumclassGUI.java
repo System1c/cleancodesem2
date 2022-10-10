@@ -53,6 +53,8 @@ public class PrimenumclassGUI implements ActionListener{
         primepanel.add(sp);
 
         primeframe.setVisible(true);
+        primeframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
     @Override

@@ -33,6 +33,8 @@ public class MainGUI implements ActionListener {
         panel1.add(wordCount);
 
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
 

@@ -48,11 +48,11 @@ public class WordcountGUI implements ActionListener{
         table = new JTable(model);
         table.setEnabled(false);
         JScrollPane sp=new JScrollPane(table);
-        sp.setBounds(100,175,160,150);
+        sp.setBounds(10,175,365,150);
         countpanel.add(sp);
-
-
         countframe.setVisible(true);
+        countframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
     @Override
@@ -62,7 +62,7 @@ public class WordcountGUI implements ActionListener{
         String res = wcc.bookpathcalc();
         String ttime = wcc.booktimecalc();
         model.addRow(new Object[]{wcc.path, res});
-        wordResult.setText(res);
+        wordResult.setText("Word count is: " + res);
         wordTime.setText(ttime);
     }
 }
