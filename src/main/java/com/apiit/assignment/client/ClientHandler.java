@@ -1,7 +1,6 @@
 package com.apiit.assignment.client;
 
 import com.apiit.assignment.classes.networkPacket;
-import org.junit.Test;
 
 import java.io.*;
 import java.net.Socket;
@@ -54,10 +53,7 @@ public class ClientHandler implements Serializable  {
         }
     }
 
-    @Test
-    public void asynchClientTest(){
 
-    }
 
 
 }

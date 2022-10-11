@@ -13,7 +13,7 @@ public class ClientServerHandler extends Thread implements Runnable, Serializabl
 
     public ClientServerHandler(Socket socket){
         try{
-            this.socket = socket;
+            ClientServerHandler.socket = socket;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,13 +37,13 @@ public class ClientServerHandler extends Thread implements Runnable, Serializabl
                     while ((values = (networkPacket) input.readObject()) != null){
                         Concurrentalgorithms cam = new Concurrentalgorithms();
                         if(values.functionVal == 3){
-                            int res = (int) cam.cnthPrime(values.requestVal);
+                            int res = (int) cam.nthPrime(values.requestVal);
                             output.write(res);
                             output.flush();
                         }
                         if(values.functionVal == 4){
                             StringBuilder sb = new StringBuilder(values.wordCount);
-                            int res = (int) cam.cwordCount(sb);
+                            int res = (int) cam.wordCount(sb);
                             output.write(res);
                             output.flush();
                         }

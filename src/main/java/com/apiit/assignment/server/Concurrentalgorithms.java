@@ -7,8 +7,8 @@ public class Concurrentalgorithms {
     long result;
     ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-    public long cwordCount(StringBuilder text){
-        Future<Long> future = (Future<Long>) executorService.submit(() ->{
+    public long wordCount(StringBuilder text){
+        Future<Long> future = executorService.submit(() ->{
             long wordCount = 0;
             String[] words = text.toString().split(" ");
             for (String word : words){
@@ -20,7 +20,7 @@ public class Concurrentalgorithms {
             return wordCount;
         });
         try {
-            result = future.get(3000, TimeUnit.MILLISECONDS);
+            result = future.get(100000, TimeUnit.MILLISECONDS);
             executorService.shutdown();
             return result;
         } catch (InterruptedException | ExecutionException | TimeoutException e){
@@ -31,8 +31,8 @@ public class Concurrentalgorithms {
         return result;
     }
 
-    public long cnthPrime(int n) {
-        Future<Long> future = (Future<Long>) executorService.submit(() ->{
+    public long nthPrime(int n) {
+        Future<Long> future = executorService.submit(() ->{
             long num = 1;
             for (int i = 1; i<=n; i++) {
                 while (!isPrime(num)) {
@@ -47,7 +47,7 @@ public class Concurrentalgorithms {
             return num;
         });
         try {
-            result = future.get(3000, TimeUnit.MILLISECONDS);
+            result = future.get(100000, TimeUnit.MILLISECONDS);
             executorService.shutdown();
             return result;
         } catch (InterruptedException | ExecutionException | TimeoutException e){
