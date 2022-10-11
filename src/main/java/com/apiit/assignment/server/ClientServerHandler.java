@@ -35,15 +35,15 @@ public class ClientServerHandler extends Thread implements Runnable, Serializabl
 
                 try{
                     while ((values = (networkPacket) input.readObject()) != null){
-                        AlgorithmServer ncm = new AlgorithmServer();
+                        Concurrentalgorithms cam = new Concurrentalgorithms();
                         if(values.functionVal == 3){
-                            int res = (int) ncm.nthPrime(values.requestVal);
+                            int res = (int) cam.cnthPrime(values.requestVal);
                             output.write(res);
                             output.flush();
                         }
                         if(values.functionVal == 4){
                             StringBuilder sb = new StringBuilder(values.wordCount);
-                            int res = (int) ncm.wordCount(sb);
+                            int res = (int) cam.cwordCount(sb);
                             output.write(res);
                             output.flush();
                         }
